@@ -1,11 +1,10 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { FaSignOutAlt, FaHistory, FaBook, FaUserAlt } from "react-icons/fa"; // Import React Icons
+import { FaSignOutAlt, FaHistory, FaUserAlt } from "react-icons/fa"; // Import React Icons
 import Div from "../components/common/Div";
 import { BiBookAdd } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import Text from "../components/common/Text";
 import { Avatar, Dropdown, Menu, notification } from "antd";
-import { TbBrandBooking } from "react-icons/tb";
 import { logout, logoutEveryDevice } from "../services/postApi";
 import { authUserLogout } from "../Redux/feathers/auth";
 
@@ -49,7 +48,7 @@ const Profile = () => {
 
   const items = [
     { name: "History", link: "history", icon: <FaHistory size={18} />, roles: ["user", "admin"] },
-    { name: "Add Book", link: "addBook", icon: <BiBookAdd size={18} />, roles: ["admin"] },
+    { name: "Add Book", link: "addBook", icon: <BiBookAdd size={18} />, roles: ["user","admin"] },
   ];
   const userRole = user?.role || "user";
 
@@ -69,7 +68,7 @@ const Profile = () => {
             size={90}
             className="text-white"
           />
-          <Text className="text-md text-ternary">{user?.role}</Text>
+          <Text className="text-md text-ternary">{user?.username}</Text>
           <Text className="text-sm">{user?.email}</Text>
         </Div>
 
