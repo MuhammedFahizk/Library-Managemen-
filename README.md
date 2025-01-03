@@ -30,7 +30,7 @@ A full-stack application built with **Node.js**, **Express.js**, **MongoDB**, **
 
 ### Backend Features
 - **User Authentication**: User registration, login, and JWT-based authentication.
-- **Book Management**: Admin can create, update, and delete books.
+
 - **Book Borrowing**: Users can borrow and return books.
 - **Security**: Password hashing with `bcryptjs` and secure JWT handling.
 
@@ -70,11 +70,8 @@ A full-stack application built with **Node.js**, **Express.js**, **MongoDB**, **
 - **ReturnButton**: Allows users to return borrowed books.
 - **Snackbar**: For success and error messages.
 
-## 📄 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 👥 Authors
-- **Your Name** - [your-github-profile](https://github.com/MuhammedFahizk/Library-Managemen-))
+- **Muhammed Fahiz k** - [your-github-profile](https://github.com/MuhammedFahizk/Library-Managemen-))
 
 ## 🙌 Acknowledgements
 - Thanks to [Ant Design](https://ant.design/) for providing a great set of UI components!
