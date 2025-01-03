@@ -22,7 +22,6 @@ router.post("/upload", requireAuthentication, bookController.createBook);
  */
 router.post(
   "/fetchBooks/:page/:limit/",
-  requireAuthentication,
   bookController.fetchBooks
 );
 
