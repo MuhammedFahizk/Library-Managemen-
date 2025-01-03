@@ -97,9 +97,7 @@ const Books = () => {
       )}
 
      
-      <Div className="flex justify-center mt-4">
-        <Text tag={"p"} className="text-lg text-red-500">Error loading books, please try again later.</Text>
-      </Div>
+     
     </Div>
   );
 };
