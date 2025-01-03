@@ -1,13 +1,16 @@
 import React from "react";
-import { Button, Card, Modal, Typography } from "antd";
+import { Button, Card, Modal, Typography, notification } from "antd";
 import { borrowBook } from "../../services/postApi"; // Import the borrowBook API function
 import Div from "./Div";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const defaultBookImage = "https://via.placeholder.com/150"; 
 
 const { Text, Title } = Typography;
 
 const Book = ({ book, setBooks }) => { 
+  const { isLoggedIn } = useSelector(state => state.auth);
 
   const handleBorrow = () => {
     if (book.availableCopies > 0) {
@@ -16,11 +19,16 @@ const Book = ({ book, setBooks }) => {
         content: `You are about to borrow "${book.title}".`,
         onOk: async () => {
           try {
-            // Call the borrowBook API to borrow the book
             const data = await borrowBook({ bookId: book._id });
             console.log('Book borrowed successfully:', data);
 
-            
+            // Show success notification
+            notification.success({
+              message: 'Book Borrowed',
+              description: `You have successfully borrowed "${book.title}". Enjoy reading!`,
+              placement: 'topRight',
+              duration: 3,
+            });
           } catch (error) {
             console.error('Error borrowing the book:', error);
             Modal.error({
@@ -37,14 +45,12 @@ const Book = ({ book, setBooks }) => {
   };
 
   return (
-    <Div className="book-card h-fit ">
+    <Div className="book-card h-fit">
       <Card
-        className="min-h-[400px]"
+        className="min-h-[400px] shadow-lg rounded-xl transition-transform transform hover:scale-105"
         hoverable
         style={{
           width: 240,
-          borderRadius: 10,
-          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
           textAlign: "center",
         }}
         cover={
@@ -60,8 +66,10 @@ const Book = ({ book, setBooks }) => {
           />
         }
       >
-        <Div className="p-1 bg-white rounded-lg">
-          <Title level={4} className="text-lg font-semibold">{book.title}</Title>
+        <Div className="p-3 bg-white rounded-lg">
+          <Title level={4} className="text-lg font-semibold mb-2 text-gray-900">
+            {book.title}
+          </Title>
           
           <Text type="secondary" className="text-sm">{book.author}</Text>
           <br />
@@ -81,14 +89,25 @@ const Book = ({ book, setBooks }) => {
           )}
           
           {/* Borrow Button */}
-          <Div className="flex justify-end py-2">
-            <Button
-              disabled={book.availableCopies === 0}
-              className="btn-primary"
-              onClick={handleBorrow}
-            >
-              Borrow
-            </Button>
+          <Div className="flex justify-center py-3">
+            {
+              isLoggedIn ? (
+                <Button
+                  disabled={book.availableCopies === 0}
+                  className={`btn-primary w-full ${book.availableCopies === 0 ? 'bg-gray-300' : 'bg-blue-600'} hover:bg-blue-700 transition duration-300`}
+                  onClick={handleBorrow}
+                >
+                  {book.availableCopies === 0 ? 'Out of Stock' : 'Borrow'}
+                </Button>
+              ) : (
+                <Link
+                  to="/login"
+                  className="btn-primary w-full bg-blue-600 hover:bg-blue-700 transition duration-300 text-white text-center py-2 rounded-md"
+                >
+                  Login to Borrow
+                </Link>
+              )
+            }
           </Div>
         </Div>
       </Card>
