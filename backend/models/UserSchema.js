@@ -43,6 +43,10 @@ const UserSchema = new Schema({
     type: String,
     default: '',
   },
+  role: {
+    type: String,
+    default: 'user',
+  },
   gender: {
     type: String,
     enum: ['male', 'female', 'other'],
@@ -56,7 +60,7 @@ const UserSchema = new Schema({
 
 UserSchema.pre('save', function (next) {
   if (this.isModified('username') || this.isModified('email') || this.isModified('password')) {
-    this.updatedAt = Date.now(); // Update timestamp
+    this.updatedAt = Date.now(); 
   }
   next();
 });

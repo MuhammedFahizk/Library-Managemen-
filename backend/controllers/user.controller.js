@@ -23,7 +23,8 @@ export const profile =async (req, res) => {
     try {
         const userId = req.userId;
         const user = await User.findById(userId);
-    
+        console.log(user,"dfsduser");
+        
         res.json({
           success: true,
           user,

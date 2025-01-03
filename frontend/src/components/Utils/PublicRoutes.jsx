@@ -52,7 +52,7 @@ const PublicRoutes = () => {
   }
 
   return displayPage ? (
-    <Div className={" bg-primary  h-screen  p-2"}>
+    <Div className={"   p-2"}>
       <Outlet />
     </Div>
   ) : null;

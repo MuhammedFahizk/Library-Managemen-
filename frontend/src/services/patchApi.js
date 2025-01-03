@@ -7,7 +7,7 @@ import { apiInstance } from "./apiInstence";
  */
 export const updateProfile = async (data) => {
     try {
-      const response = await apiInstance.patch("/profile", data, {
+      const response = await apiInstance.patch("/user/profile", data, {
         withCredentials: true, 
         
       });

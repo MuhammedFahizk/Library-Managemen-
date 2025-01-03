@@ -25,7 +25,7 @@ router.post("/register", userControllers.register);
 router.post("/login", userControllers.loginUser);
 
 /**
- * @method - POST
+ * @method - Get
  * @param {string} path - /api/users/profile
  * @description - fetch user profile data
  */

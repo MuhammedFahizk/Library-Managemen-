@@ -4,7 +4,7 @@ import NavBar from "../layout/NavBar"
 
 const CommonRoutes = () => {
   return (
-    <Div className={" bg-[#2eb0854f]  h-screen  p-2"}>
+    <Div className={"   h-screen  p-2"}>
     <NavBar></NavBar>
     <Outlet />
   </Div>

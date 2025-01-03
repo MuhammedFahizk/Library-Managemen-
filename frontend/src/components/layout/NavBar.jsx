@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { getProfile } from "../../services/getApi";
 import Profile from "../common/Profile";
 import { Spin } from "antd"; // Ant Design spinner for loading effect
+import { useDispatch } from "react-redux";
+import { setUser } from "../../Redux/feathers/auth";
 
 const NavBar = () => {
   const navItems = [
@@ -15,12 +17,15 @@ const NavBar = () => {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const dispatch = useDispatch()
   useEffect(() => {
     const fetchProfile = async () => {
       try {
         const response = await getProfile();
+        console.log(response);
+        
         setProfile(response.user);
+        dispatch(setUser(response.user))
       } catch (err) {
         setError(err.message || "Failed to fetch profile");
       } finally {
